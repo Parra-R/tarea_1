@@ -4,5 +4,21 @@ const inventario=[
     {"nombre":"Producto3", "precio": 80, "stock":1}
 ]
 function agregarCarrito (nombreProducto, cantidadDeseada){
+    const producto = inventario.find((item)=>item.nombre === nombreProducto);
 
+    if(!producto){
+        console.warn(`El producto ${nombreProducto} no existe`);
+        return
+    }
+
+    if(producto.stock < cantidadDeseada){
+        console.warn(`No hay suficiente stock disponible, sentimos las molestias`);
+        return
+    }
+
+    const total = producto.precio * cantidadDeseada;
+
+    console.log(`Has comprado ${cantidadDeseada} unidades del ${producto.nombre}, su total es de ${total} €`)
 }
+
+agregarCarrito("Producto1", 2)
